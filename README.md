@@ -17,25 +17,57 @@ A Python script validates the recorded IP address plan, checking address format,
 | 10 | Sales | 192.50.50.0/24 | 192.50.50.1 |
 | 20 | Security | 168.20.0.0/16 | 168.20.0.1 |
 
-## Verification
+### Python Address Validation
 
-Ping tests confirmed connectivity within both VLANs and between subnets.
+The script checks IPv4 format, subnet membership, and duplicate addresses.
 
-![Inter-VLAN ping](screenshots/ping-inter-vlan.png)
-
-The Python validator checks all five PCs. Four automated checks cover valid settings, an address outside its subnet, an invalid address, and a duplicate IP.
-
-![Python validation](screenshots/python-check.png)
-
-![Test results](screenshots/python-tests.png)
-
-## Run
-
-Open `small-office-network.pkt` in Cisco Packet Tracer.
-
-Run the validator and tests with Python 3.12:
+**Valid address plan — all five PCs pass**
 
 ```bash
-python main.py
-python test_main.py
+PC0: OK - IP address 168.20.0.10 is in subnet 168.20.0.0/16
+PC1: OK - IP address 168.20.0.11 is in subnet 168.20.0.0/16
+PC2: OK - IP address 192.50.50.12 is in subnet 192.50.50.0/24
+PC3: OK - IP address 192.50.50.13 is in subnet 192.50.50.0/24
+PC4: OK - IP address 168.20.0.14 is in subnet 168.20.0.0/16
+
+Devices checked: 5
+Devices with errors: 0
+```
+
+### Automated Checks
+
+**Address outside the expected subnet**
+
+```bash
+PC2: ERROR
+  - IP address 192.50.60.12 is outside subnet 192.50.50.0/24
+
+Devices checked: 1
+Devices with errors: 1
+```
+
+**Invalid IPv4 address**
+
+```bash
+PC2: ERROR - invalid IPv4 address or subnet
+
+Devices checked: 1
+Devices with errors: 1
+```
+
+**Duplicate IP address**
+
+```bash
+PC0: OK - IP address 168.20.0.10 is in subnet 168.20.0.0/16
+PC1: ERROR
+  - IP address 168.20.0.10 is already used by PC0
+
+Devices checked: 2
+Devices with errors: 1
+```
+
+**Test summary**
+
+```bash
+All 4 tests passed
 ```
