@@ -17,7 +17,7 @@ A Python script validates the recorded IP address plan, checking address format,
 | 10 | Sales | 192.50.50.0/24 | 192.50.50.1 |
 | 20 | Security | 168.20.0.0/16 | 168.20.0.1 |
 
-### Python Address Validation
+# Python Address Validation
 
 The script checks IPv4 format, subnet membership, and duplicate addresses.
 
