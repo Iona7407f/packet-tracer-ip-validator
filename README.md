@@ -6,7 +6,7 @@ Sales and Security are separated into VLANs. A trunk carries both VLANs between 
 
 A Python script validates the recorded IP address plan, checking address format, subnet membership, and duplicate addresses.
 
-**Tools:** Cisco Packet Tracer · Python 3.12
+**Tools:** Cisco Packet Tracer & Python 3.12
 
 ## Network Topology
 
